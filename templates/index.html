@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Satellite Damage Detection</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+</head>
+<style>
+
+    /* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #111827,
+        #1e293b
+    );
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    color: white;
+}
+
+/* =========================
+   BACKGROUND ANIMATION
+========================= */
+
+.background-animation {
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(14,165,233,0.12), transparent 30%);
+
+    animation: pulseBackground 6s infinite alternate;
+
+    z-index: -1;
+}
+
+@keyframes pulseBackground {
+
+    from {
+
+        transform: scale(1);
+    }
+
+    to {
+
+        transform: scale(1.05);
+    }
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.main-wrapper {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px;
+}
+
+.glass-card {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 25px;
+
+    padding: 50px;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero-section {
+
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+.hero-section h1 {
+
+    font-size: 3.5rem;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+    background: linear-gradient(
+        to right,
+        #60a5fa,
+        #38bdf8
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+   
+}
+
+.hero-section p {
+
+    font-size: 1.1rem;
+
+    color: #cbd5e1;
+
+    max-width: 800px;
+
+    margin: auto;
+
+    line-height: 1.8;
+}
+
+/* =========================
+   UPLOAD GRID
+========================= */
+
+.upload-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 30px;
+
+    margin-bottom: 40px;
+}
+
+.upload-box {
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    transition: 0.3s ease;
+}
+
+.upload-box:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 8px 25px rgba(59,130,246,0.25);
+}
+
+.upload-icon {
+
+    font-size: 3rem;
+
+    margin-bottom: 20px;
+}
+
+.upload-box h3 {
+
+    margin-bottom: 10px;
+
+    font-size: 1.5rem;
+}
+
+.upload-box p {
+
+    color: #cbd5e1;
+
+    margin-bottom: 20px;
+}
+
+.upload-box input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    background: rgba(255,255,255,0.12);
+
+    color: white;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.detect-btn {
+
+    width: 100%;
+
+    padding: 18px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    font-size: 1.1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #0ea5e9
+    );
+
+    color: white;
+
+    transition: 0.3s ease;
+}
+
+.detect-btn:hover {
+
+    transform: scale(1.02);
+
+    box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features {
+
+    margin-top: 50px;
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+}
+
+.feature-card {
+
+    background: rgba(255,255,255,0.05);
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    transition: 0.3s ease;
+}
+
+.feature-card:hover {
+
+    background: rgba(255,255,255,0.09);
+
+    transform: translateY(-5px);
+}
+
+.feature-card h4 {
+
+    margin-bottom: 10px;
+
+    color: #60a5fa;
+}
+
+.feature-card p {
+
+    color: #cbd5e1;
+
+    font-size: 0.95rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    margin-top: 40px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 0.95rem;
+}
+
+/* =========================
+   LOADING SCREEN
+========================= */
+
+#loading-screen {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(15,23,42,0.96);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.loader-container {
+
+    text-align: center;
+}
+
+.loader-ring {
+
+    width: 90px;
+    height: 90px;
+
+    border: 8px solid rgba(255,255,255,0.1);
+
+    border-top: 8px solid #38bdf8;
+
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+
+    margin: auto auto 30px;
+}
+
+@keyframes spin {
+
+    100% {
+
+        transform: rotate(360deg);
+    }
+}
+
+.loader-container h2 {
+
+    margin-bottom: 10px;
+
+    color: #e2e8f0;
+}
+
+.loader-container p {
+
+    color: #94a3b8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 768px) {
+
+    .glass-card {
+
+        padding: 30px 20px;
+    }
+
+    .hero-section h1 {
+
+        font-size: 2.4rem;
+    }
+
+    .hero-section p {
+
+        font-size: 1rem;
+    }
+}
+</style>
+
+<body>
+
+    <!-- Background Animation -->
+    <div class="background-animation"></div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+
+        <div class="loader-container">
+
+            <div class="loader-ring"></div>
+
+            <h2>Analyzing Satellite Images...</h2>
+
+            <p>Running U-Net Damage Detection Model</p>
+
+        </div>
+
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-wrapper">
+
+        <div class="glass-card">
+
+            <div class="hero-section">
+
+                <h1>
+                    War Damage Detection
+                </h1>
+
+                <p>
+                    AI-powered satellite image analysis system using
+                    deep learning and U-Net segmentation for detecting
+                    structural and urban damage from TIFF imagery.
+                </p>
+
+            </div>
+
+            <form
+                id="upload-form"
+                action="/predict"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                <div class="upload-grid">
+
+                    <!-- Before Image -->
+                    <div class="upload-box">
+
+                        <div class="upload-icon">
+                            📡
+                        </div>
+
+                        <h3>Before Image</h3>
+
+                        <p>Select pre-disaster TIFF image</p>
+
+                        <input
+                            type="file"
+                            name="before"
+                            required
+                            accept=".tif,.tiff"
+                        >
+
+                    </div>
+
+                    <!-- After Image -->
+                    <div class="upload-box">
+
+                        <div class="upload-icon">
+                            🔥
+                        </div>
+
+                        <h3>After Image</h3>
+
+                        <p>Select post-disaster TIFF image</p>
+
+                        <input
+                            type="file"
+                            name="after"
+                            required
+                            accept=".tif,.tiff"
+                        >
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="detect-btn">
+
+                    <span>Detect Damage</span>
+
+                </button>
+
+            </form>
+
+            <div class="features">
+
+                <div class="feature-card">
+
+                    <h4>Deep Learning</h4>
+
+                    <p>
+                        U-Net based semantic segmentation
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <h4>TIFF Processing</h4>
+
+                    <p>
+                        High-resolution satellite imagery support
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <h4>Damage Analysis</h4>
+
+                    <p>
+                        Heatmaps, masks and damage estimation
+                    </p>
+
+                </div>
+
+            </div>
+
+            <footer>
+
+                <p>
+                    Developed by Harsh
+                </p>
+
+            </footer>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const form = document.getElementById("upload-form");
+
+        const loadingScreen = document.getElementById("loading-screen");
+
+        form.addEventListener("submit", function () {
+
+            loadingScreen.style.display = "flex";
+
+        });
+
+    </script>
+
+</body>
+
+</html>

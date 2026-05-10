@@ -1,0 +1,12 @@
+Flask
+torch
+torchvision
+segmentation-models-pytorch
+albumentations
+opencv-python
+numpy
+matplotlib
+rasterio
+Pillow
+tqdm
+gunicorn

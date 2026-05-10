@@ -1,0 +1,331 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #111827,
+        #1e293b
+    );
+
+    color: white;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+.background-animation {
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(circle at top left,
+        rgba(37,99,235,0.18),
+        transparent 30%),
+
+        radial-gradient(circle at bottom right,
+        rgba(14,165,233,0.15),
+        transparent 30%);
+
+    animation: pulseBackground 6s infinite alternate;
+
+    z-index: -1;
+}
+
+@keyframes pulseBackground {
+
+    from {
+
+        transform: scale(1);
+    }
+
+    to {
+
+        transform: scale(1.05);
+    }
+}
+
+/* =========================
+   MAIN WRAPPER
+========================= */
+
+.result-wrapper {
+
+    width: 95%;
+
+    max-width: 1500px;
+
+    margin: auto;
+
+    padding: 50px 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.result-header {
+
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.result-header h1 {
+
+    font-size: 3.2rem;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+
+    background: linear-gradient(
+        to right,
+        #60a5fa,
+        #38bdf8
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.result-header p {
+
+    color: #cbd5e1;
+
+    font-size: 1.1rem;
+}
+
+/* =========================
+   DAMAGE SCORE
+========================= */
+
+.damage-score-card {
+
+    width: 320px;
+
+    margin: auto auto 50px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+    animation: floatCard 3s infinite ease-in-out;
+}
+
+@keyframes floatCard {
+
+    0% {
+
+        transform: translateY(0px);
+    }
+
+    50% {
+
+        transform: translateY(-8px);
+    }
+
+    100% {
+
+        transform: translateY(0px);
+    }
+}
+
+.damage-score-card h2 {
+
+    margin-bottom: 20px;
+
+    color: #cbd5e1;
+}
+
+.damage-percentage {
+
+    font-size: 4rem;
+
+    font-weight: 700;
+
+    color: #38bdf8;
+}
+
+/* =========================
+   RESULTS GRID
+========================= */
+
+.results-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+    gap: 30px;
+}
+
+/* =========================
+   RESULT CARD
+========================= */
+
+.result-card {
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.4s ease;
+
+    overflow: hidden;
+}
+
+.result-card:hover {
+
+    transform: translateY(-10px);
+
+    box-shadow: 0 15px 35px rgba(37,99,235,0.35);
+}
+
+.result-card h3 {
+
+    margin-bottom: 20px;
+
+    color: #60a5fa;
+
+    font-size: 1.3rem;
+}
+
+/* =========================
+   IMAGE STYLING
+========================= */
+
+.result-card img {
+
+    width: 100%;
+
+    border-radius: 18px;
+
+    transition: 0.4s ease;
+}
+
+.result-card img:hover {
+
+    transform: scale(1.03);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.action-buttons {
+
+    margin-top: 50px;
+
+    text-align: center;
+}
+
+.action-buttons button {
+
+    padding: 16px 35px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #0ea5e9
+    );
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.action-buttons button:hover {
+
+    transform: scale(1.05);
+
+    box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    margin-top: 50px;
+
+    text-align: center;
+
+    color: #94a3b8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 768px) {
+
+    .result-header h1 {
+
+        font-size: 2.3rem;
+    }
+
+    .damage-score-card {
+
+        width: 100%;
+    }
+
+    .damage-percentage {
+
+        font-size: 3rem;
+    }
+
+    
+}

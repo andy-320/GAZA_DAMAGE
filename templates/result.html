@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Damage Detection Results</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background-animation"></div>
+
+    <div class="result-wrapper">
+
+        <!-- Header -->
+        <div class="result-header">
+
+            <h1>
+                Damage Detection Results
+            </h1>
+
+            <p>
+                AI-powered satellite damage assessment completed successfully.
+            </p>
+
+        </div>
+
+        <!-- Damage Score -->
+        <div class="damage-score-card">
+
+            <h2>
+                Estimated Damage
+            </h2>
+
+            <div class="damage-percentage">
+
+                {{ damage }}%
+
+            </div>
+
+        </div>
+
+        <!-- Result Grid -->
+        <div class="results-grid">
+
+            <!-- Overlay -->
+            <div class="result-card">
+
+                <h3>
+                    Overlay Prediction
+                </h3>
+
+                <img
+                    src="{{ url_for('static', filename='results/overlay.png') }}"
+                    alt="Overlay"
+                >
+
+            </div>
+
+
+            <!-- Mask -->
+            <div class="result-card">
+
+                <h3>
+                    Binary Damage Mask
+                </h3>
+
+                <img
+                    src="{{ url_for('static', filename='results/mask.png') }}"
+                    alt="Mask"
+                >
+
+            </div>
+
+            <!-- Heatmap -->
+            <div class="result-card">
+
+                <h3>
+                    Prediction Heatmap
+                </h3>
+
+                <img
+                    src="{{ url_for('static', filename='results/heatmap.png') }}"
+                    alt="Heatmap"
+                >
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="action-buttons">
+
+            <a href="/">
+
+                <button>
+                    Analyze Another Image
+                </button>
+
+            </a>
+
+        </div>
+
+        <!-- Footer -->
+        <footer>
+
+            <p>
+                Developed by Harsh
+            </p>
+
+        </footer>
+
+    </div>
+    
+
+</body>
+
+</html>
